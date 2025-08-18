@@ -1,0 +1,11 @@
+1. Añadido archivo de prueba para el pull request
+Qué cambió: Se agregó un nuevo archivo llamado prueba.txt al repositorio.
+Por qué se hizo: El objetivo era practicar la creación de un pull request.
+ Como el ejercicio pedía hacer el merge de una rama a la principal, y yo solo tenía la rama main en ese momento,
+  tuve que crear un nuevo archivo para tener algo que modificar en la nueva rama que creé (past-exercises).
+
+2. archivo borrado para prueba
+Qué cambió: Se eliminó un archivo de prueba del repositorio.
+Por qué se hizo: Este cambio se hizo para explorar cómo Git rastrea y registra la eliminación de archivos, 
+ayudándome a familiarizarme con las funciones básicas del control de versiones.
+
