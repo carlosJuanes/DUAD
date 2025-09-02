@@ -1,0 +1,749 @@
+<aside>
+💪🏽 Ejercicios
+
+1. Cree un algoritmo para ver un video en Youtube. Sea lo más especifico posible.
+2. Cree un algoritmo que describa su rutina diaria. Use condiciones, condiciones multiples y ciclos.
+</aside>
+
+Ver videos de youtube en el celular:
+inicio
+abre la aplicaion de youtube
+dar click en el buscador
+ralizar busqueda de algun video de tu preferencia
+seleccionar el video
+darle play al video
+fin
+
+
+
+
+
+Rutina del dia lunes:
+1. inicio 
+2. Levantarme a las 3:30 am
+5. tomar una ducha
+6. salir a trabajar a las 4:00 am
+7. entrar a trabajar a las 5:00 am
+8. hasta que no se cumplan 8 horas laborales
+   a. seguir trabajando 
+9. regresar a casa
+10. si aun  tengo energias fisicas y ganas de salir  
+   a. ir al gym y a comer
+11. sino, si tengo pocas energias fisicas y ganas de salir
+   a. salir a comer 
+12. sino 
+   a. me quedo en casa a comer
+12. jugar videojuegos en la tarde noche
+13. dormir
+14. fin
+
+
+__'''¿0
+)=(()=%&/())°!"#$%&/()=?¡¡?°!"#$%&/()=?¡_[-{ñ..,;;,:_LÑ[*¨¨__---_____''????::____------_______=<)(*)()<=>_:______(
+)=?¡¡?=)(/&%$#"
+
+
+semana 2
+
+
+
+1. Cree un pseudocódigo que le pida un `precio de producto` al usuario, calcule su descuento y muestre el precio final tomando en cuenta que:
+    1. Si el precio es menor a 100, el descuento es del 2%.
+    2. Si el precio es mayor o igual a 100, el descuento es del 10%.
+    3. *Ejemplos*:
+        1. 120 → 108
+        2. 40 → 39.2
+
+resolucion
+inicio
+definir precio_del_producto
+definir descuento
+definir precio_final
+
+mostar "ingresar precio de producto"
+pedir precio_del_producto"
+si (precio de producto < 100) entonces
+ descuento= precio_de_producto*0.02
+sino
+ descuento (precio de producto*0.1)
+finsi
+precio_final=precio_de_producto-descuento
+mostrar "precio final del producto"
+mostrar "precio final"
+fin
+
+
+
+
+2
+2. Cree un pseudocódigo que le pida un `tiempo en segundos` al usuario y calcule si es menor o mayor a 10 minutos. Si es menor, muestre cuantos segundos faltarían para llegar a 10 minutos. Si es mayor, muestre “*Mayor*”. Si es exactamente igual, muestre “*Igual*”.
+    1. *Ejemplos*:
+        1. 1040 → Mayor
+        2. 140 → 460
+        3. 600 → Igual
+        4. 599 → 1
+
+resolucion
+inicio
+definir tiempo en segundos
+definir mayor
+definir igual
+definir faltante
+mostrar ingrese su tiempo 
+pedir tiempo en segundos
+si (tiempo en segundos < 600)
+faltante= 600-tiempo en segundos
+mostrar faltante
+sino 
+si (tiempo en segundos>600)
+mostrar mayor
+sino (tiempo en segundos=600)
+mostrar =igual
+finsi
+fin
+
+
+resolucion
+definir numero_ingresado
+definir resultado
+definir contador 
+
+contador=1
+resultado =0
+
+Mostrar "ingrese Numero"
+Pedir numero_ingresado
+mientras 
+contador≤numero_ingresado
+resultado=resultado+contador
+contador=contador+1
+
+finmientras
+
+
+
+
+
+
+
+
+
+
+
+ejercicios extras
+
+1
+
+
+1. Cree un algoritmo que le pida 2 números al usuario, los guarde en dos variables distintas (`primero` y `segundo`) y los ordene de menor a mayor en dichas variables.
+    1. Ejemplos:
+        1. A: 56, B: 32 → A: 32, B: 56
+        2. A: 24, B: 76 → A: 24, B: 76
+        3. A: 45, B: 12 → A: 12, B: 45
+
+resolucion
+inicio
+definir primero
+definir segundo
+definir tercero
+
+mostrar ingrese el primer numero
+pedir primer
+mostrar imgrese el segundo numero
+pedir segundo
+
+si (primero>segundo)
+tercero=primero
+primero=segundo
+segundo=tercero
+mostrar segundo tercero
+sino 
+mostrar primero segundo
+finsi
+
+
+fin
+
+
+2
+
+Cree un algoritmo que le pida al usuario una velocidad en km/h y la convierta a m/s. Recuerda que 1 km == 1000m y 1 hora == 60 minutos * 60 segundos
+
+inicio
+resolucion
+definir velocidad en km/h
+definir velocidad en m/s
+
+mostrar ingrese velocidad en km/h
+pedir velocidad en km/h
+
+velocidad m/s=elocidad en km/h*1000/3600
+mostrar su velocidad es
+mostrar velocidad m/s
+
+
+fin
+
+
+
+
+3
+inicio
+
+definir numero de personas totales
+definir cantidad de mujeres
+definir cantidad de hombres
+definir sexo ingresado
+definir promedio hombres
+definir promedio mujeres
+
+mostrar ingrese cantidad de personas
+pedir numero de personas totales
+contador=1
+
+mientras que contador<=cantidad de personas
+mostrar selecciones el sexo para la persona numero
+mostrar contador
+mostrar 1 para mujeres 2 para hombres
+pedir sexo ingresado
+
+si sexo ingresado es =1 entonces
+cantidad e mujeres =cantidad de mujeres+1
+sino si sexo ingresado es 2 entonces
+cantidad de hombres=cantidad de hombres +1
+fin si 
+contador+1
+finmientras
+
+porcentaje de mujeres =cantidad de mujeres*100/cantidad de personas
+
+porcentaje de hombres=cantidad de hombres*100/cantidad de personas
+
+
+
+
+
+
+
+
+
+
+
+si  hombre = 1 
+promedio de hombres =hombre + 1
+
+sino
+mujer=2
+promedio de mujeres=mujeres +1
+finsi
+contador =contador+1
+finmientras
+
+
+
+
+
+
+
+3
+definir mujeres
+definir hombres
+
+mostrar ingrese sexo 
+pedir
+
+
+
+
+
+
+
+
+no entiendo esto// 3. Mostrar los números ordenados
+  MOSTRAR "Números ordenados: A = " + A + ", B = " + B
+FIN los simblos mas y las comillas que representan
+
+me ha servido de mucho tu informacion, pero como veras vengo empezando en este mundo, podrias ayudarme omitiendo esos signos para temas de aprendizaje, podrias omitirlos y darme la respuesta sin ellos?
+
+podria funcionar el siguiente como posible respuesta?
+
+inicio
+definir cantidad de numeros
+definir primeri
+definir segundo
+contador =1
+mostrar ingrese la cantidad de numeros 
+pedir cantidad de numeros
+mientras que (contador≤cantidad de números)hacer
+mostrar ingrese el numero
+mostrar contador 
+pedir primero
+contador = contador+1
+mostrar ingrese el numero 
+mostrar contador
+pedir segundo
+
+si (primero<segundo
+mostrar primero y segundo
+
+sino 
+mostrar segundo y primero
+finsi
+fin
+
+porque cuando quiero que 
+porque cuando quiweor que se actice esa 
+treclasdfksjfjs
+
+
+y el mayor que?
+ regresemos al algoritmo que me propusistes,aun no lo tengo muy claro podrias despejarme algunas dudas?
+
+podria funcionar si proponemos dos temporales, es decir si A>(y resulte correcta)
+podemos decir que la temporal 1=A
+y la temporal 2=B
+y de esa manera mostrar en la pantalla el orden temporarl 2 y temporal 1
+
+
+
+
+
+
+
+
+semana 3
+
+Cree un pseudocódigo que le pida un `precio de producto` al usuario, calcule su descuento y muestre el precio final tomando en cuenta que:
+
+1. Si el precio es menor a 100, el descuento es del 2%.
+2. Si el precio es mayor o igual a 100, el descuento es del 10%.
+
+Resolucion
+
+Inicio
+
+Definir `Precio_del_producto`
+
+Definir `Descuento`
+
+Definir `Precio_final`
+
+Mostrar “Ingrese Precio del Producto”
+
+Pedir `Precio_del_producto`
+
+Si (`Precio_del_producto`<100) Entonces
+
+`Descuento`=`Precio_del_producto`*0.02
+
+Sino
+
+`Descuento`=`Precio_del_producto`*0.1
+
+Finsi
+
+`Precio_final`=`Precio_del_producto`-`Descuento`
+
+Mostrar “Precio final del producto”
+
+Mostrar “`Precio_final`"
+
+Fin
+
+Cree un pseudocódigo que le pida un `tiempo en segundos` al usuario y calcule si es menor o mayor a 10 minutos. Si es menor, muestre cuantos segundos faltarían para llegar a 10 minutos. Si es mayor, muestre “*Mayor*”. Si es exactamente igual, muestre “*Igual*”.
+
+Resolucion
+
+Inicio
+
+Definir `Tiempo_en_segundos`
+
+Definir `Mayor`
+
+Definir `Igual`
+
+Definir `Segundos_Faltantes`
+
+Mostrar “Ingrese su tiempo”
+
+Pedir `Tiempo_en_segundos`
+
+Si (`Tiempo_en_segundos`<600)
+
+`Segundos_Faltantes` = 600-`Tiempo_en_segundos`
+
+Mostrar “`Segundos_Faltantes`"
+
+Sino 
+
+Si (`Tiempo_en_segundos`>600)
+
+Mostrar “Mayor”
+
+Sino ( `Tiempo_en_segundos` =600)
+
+Mostrar “Igual”
+
+Finsi
+
+Fin
+
+Ejercicios Extras
+
+Cree un algoritmo que le pida 2 números al usuario, los guarde en dos variables distintas (`primero` y `segundo`) y los ordene de menor a mayor en dichas variables.
+
+Resolucion
+
+Inicio
+
+Definir `Primero`
+
+Definir `Segundo`
+
+Definir `Tercero`
+
+Mostrar “Ingrese el Primer numero”
+
+Pedir `Primero`
+
+Mostrar “Ingrese el Segundo numero”
+
+Pedir `Segundo`
+
+Si ( `Primero`>`Segundo`)
+
+`Tercero`=`Primero`
+
+`Primero`=`Segundo`
+
+`Segundo`=`Tercero`
+
+Mostrar “`Segundo`.`Tercero`
+
+Sino
+
+Mostrar “`Primero` .`Segundo`
+
+Finsi
+
+Fin
+
+Cree un algoritmo que le pida al usuario una velocidad en km/h y la convierta a m/s. Recuerda que `1 km = 1000m` y `1 hora = 60 minutos * 60 segundos`.
+
+Resolucion
+
+Inicio
+
+Definir `Velocidad_km/h` 
+
+Definir `Velocidad_m/s`
+
+Mostrar “Ingrese Velocidad en km/h”
+
+Pedir `Velocidad_km/h`
+
+`Velocidad_m/s` = (`Velocidad_km/s`*1000)/3600
+
+Mostrar “Su velocidad es de “
+
+Mostrar `Velocidad_m/s`
+
+Fin
+
+Cree un algoritmo que le pregunte al usuario por el sexo de 6 personas, ingresando 1 si es mujer o 2 si es hombre, y muestre al final el porcentaje de mujeres y hombres.
+
+Resolucion
+
+Inicio
+
+Definir `Numero_de_Personas_Totales`
+
+Definir `Cantidad_de_mujeres`
+
+Definir `Cantidad_de_hombre`
+
+Definir `Sexo_ingresado`
+
+Definir `Porcentaje_de_hombres`
+
+Definir `Porcentaje_de_mujeres`
+
+Definir `Contador`
+
+Mostrar “Ingrese Cantidad de Personas”
+
+Pedir `Numero_de_Personas_Totales`
+
+`Contador`= 1
+
+Mientras `Contador` ≤ `Numero_de_Personas_Totales`
+
+Mostrar “Seleccione el sexo para la persona numero”
+
+Mostrar “`Contador`"
+
+Mostrar “1 para mujeres, 2 para hombres”
+
+Pedir `Sexo_ingresado`
+
+Si `Sexo_ingresado`= 1 entonces
+
+`Cantidad_de_mujeres`=`Cantidad_de_mujeres`+1
+
+Sino `Sexo_ingresado` = 2 entonces
+
+`Cantidad_de_hombre`=`Cantidad_de_hombre`+1
+
+Finsi
+
+`Contador`+1
+
+Finmientras
+
+`Porcentaje_de_mujeres` =(`Cantidad_de_mujeres` *100)/`Numero_de_Personas_Totales`
+
+`Porcentaje_de_hombres`=(`Cantidad_de_hombre`*100)/`Numero_de_Personas_Totales`
+
+Mostrar “El porcentaje de Mujeres es de “
+
+Mostrar “`Porcentaje_de_mujeres` %”
+
+Mostrar “El porcentaje de Hombres es de 
+
+Mostrar “`Porcentaje_de_hombres` %”
+
+Fin
+
+
+
+
+≠≠
+
+
+Cree un diagrama de flujo que tenga un numero secreto del 1 al 10, y le pida al usuario adivinar ese número. El algoritmo no debe terminar hasta que el usuario adivine el numero.
+
+resolucion
+inicio
+definir
+numero_secreto = 0
+numero_ingresado
+
+Mostrar "ingrese un numero del 1  - 10"
+Pedir numero_ingresado
+
+mientras
+(numero_ingresado!=numero_secreto)
+mostrar "Porfavor Vuelva a intentarlo"
+
+si numero_ingresado=numero_secreto
+Mostrar felicidades el numero secreto es "numero_secreto"
+
+sino
+Mostrar porfavor vuelve a ingresar un numero del 1-10
+finsi
+finmientras
+fin
+
+cree un seudo codigo 3. que pida 3 números al usuario. Si uno de esos números es 30, o si los 3 sumados dan 30, mostrar “*Correcto*”. Sino, mostrar “*incorrecto*”.
+   
+
+no veo que hayas ejecutado la condicion que dice. si los tres numeros sumados dan 30 mostrar "correcto"
+
+perdon mala mia, en mi pantalla no aparecia la condicion de la suma total, tenia que desplazar la barra hacia un lado para poder verla, estaba oculta muchas gracias
+
+
+
+3
+resolucion
+inicio
+definir nunmero_1
+definir numero_2
+definir numero_3
+definir suma_total
+
+
+mostrar "ingrese el primer numero"
+pedir nunmero_1
+
+mostrar "ingrese el segundo numero"
+pedir numero_2
+
+Mostrar "ingrece el tercer numero"
+pedir numero_3
+
+
+suma_total=numero_1 + numero_2 + numero_3
+si
+(numero_1=30) o (numero_2=30) o (numero_3=30) o (suma_total=30)
+Mostrar "Correcto" 
+
+sino
+Mostrar "Incorrecto"
+
+Fin
+
+
+cree un pseudo codigo  que le pida 5 números al usuario y muestre el mayor.
+
+
+Resolucion
+definir nunmero_1
+definir numero_2
+definir numero_3
+definir nunmero_4
+definir numero_5
+definir numero_mayor
+
+
+mostrar "ingrese el primer numero"
+pedir nunmero_1
+
+mostrar "ingrese el segundo numero"
+pedir numero_2
+
+Mostrar "ingrece el tercer numero"
+pedir numero_3
+
+mostrar "ingrese el cuarto numero"
+pedir nunmero_4
+
+mostrar "ingrese el quinto numero"
+pedir numero_5
+
+si numero_1>numero_2
+Mostrar" numero_1
+
+numero_mayor=numero_1
+
+si
+ numero_2 > numero_mayor
+numero_mayor=numero_2
+finsi
+
+si
+numero_3>numero_mayor
+numero_mayor=numero_3
+finsi
+
+si
+numero4>numero_mayor
+numero_mayor=numero_4
+finsi
+
+si
+numero_5>numero_mayor
+numero_mayor=numero_5
+finsi
+
+mostrar "numero_mayor
+
+fin
+
+
+
+
+
+
+cree un pseudo codigo que le pida un numero al usuario y muestre “Fizz” si es divisible entre 3, “Buzz” si es divisible entre 5, y “FizzBuzz” si es divisible entre ambos.
+
+
+resolucion
+inicio
+definir Fizz
+definir Buzz
+definir fizzbuzz
+definir numero_ingresado
+
+mostrar "ingrese su numero"
+Pedir numero_ingresado
+
+si 
+(numero_ingresado MOD 3 = 0) y
+(numero_ingresado MOD 5 = 0)
+Mostrar "fizzbuzz"
+
+sino
+si (numero_ingresado MOD 3 = 0 )
+Mostrar "fizz"
+
+sino
+si (numero_ingresado MOD 5 = 0)
+Mostrar "buzz"
+
+sino
+Mostrar "numero_ingresado
+finsi
+
+fin
+
+
+
+
+cree un pseudo codigo que le pida 100 números al usuario y muestre la suma de todos.
+
+resolucion
+inicio
+definir suma_total
+definir contador
+definir numero
+
+contador=1
+
+repetir 100 veces con contador desde 1
+mostar "ingrese el numero"
+mostrar "contador"
+pedir   numero
+
+suma_total = suma_total + numero
+ 
+finrepetir
+mostrar "la suma de todos los numeros es"
+Mostrar "suma_total"
+
+fin.
+
+cree un pseudocodigo que le pida 100 números al usuario y muestre el mayor de todos.
+
+
+resolucion
+
+inicio
+definir numero
+definir contador
+definir numero_mayor
+
+
+contador=1
+
+mostrar "ingrese el numero"
+mostrar "contador
+pedir    numero
+
+
+
+
+
+
+
+mostrar ingrese su numero 
+mientras contador≤100
+
+
+
+≤≥±≤≥⌡≤≡╠2≡±≥♦≥
+
+
+
+
+
+
+
+
+PYTHON
+
+()<>?TV6-$[{{[[[["""""
+
+
+
+
+

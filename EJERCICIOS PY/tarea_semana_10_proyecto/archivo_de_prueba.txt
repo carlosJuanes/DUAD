@@ -1,0 +1,2 @@
+archivo creado de prueva para hacer un full requests, ya que segui los pasos del primer video y subi todas las carperas
+al inicio en el "main" sin crear una nueva "branch"
