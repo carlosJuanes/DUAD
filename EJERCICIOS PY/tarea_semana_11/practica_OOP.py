@@ -35,6 +35,29 @@ print(tu_carro.ruedas)
 
 print()
 print("//////////////////////////////")
+print("------EJERCICIO DE FOTOGRAFIA-----")
+
+class PhotographyCamera:
+	photographies = []
+
+	def __init__(self, storage_size_in_mb):
+		# each photo takes around 10mb
+		self.max_photographies = storage_size_in_mb / 10
+	
+	def take_photo(self, photography):
+		if len(self.photographies) >= self.max_photographies:
+			print("My storage is full!")
+			return
+
+		self.photographies.append(photography)
+		
+kodak_camera = PhotographyCamera(50)
+kodak_camera.take_photo("My car")
+kodak_camera.take_photo("My house")
+print(kodak_camera.photographies)
+
+print()
+print("//////////////////////////////")
 print("-------HERENCIA-----")
 # Esta es la clase padre o superclase
 class Animal:
