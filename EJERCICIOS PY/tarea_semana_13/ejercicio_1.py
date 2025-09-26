@@ -2,10 +2,12 @@
 
 
 def display(func):
-    def wrapper(*args):
+    def wrapper(*args,  **kwargs):
         print("Parameters")
         print(*args)
-        result=func(*args)
+        for clave, valor in kwargs.items():
+            print(f"{clave}: {valor}")
+        result=func(*args, **kwargs)
         print("return value:", result)
         return result
 
@@ -13,8 +15,9 @@ def display(func):
 
 
 @display
-def create_user(name, last_name):
-    return name, last_name
+def create_user(name, last_name, age=None):
+    return name, last_name, age
 
 
-create_user("Carlos", "Juanes")
+create_user("Alfredo", "Medina", age=53)
+create_user("Carlos", "Juanez", age=33)

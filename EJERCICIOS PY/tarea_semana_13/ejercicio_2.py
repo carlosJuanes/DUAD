@@ -4,14 +4,10 @@
 def check_numbers(func):
     def wrapper(*args, **kwarg):
         for arg in args:
-            try:
-                float(arg)
-            except ValueError:
+            if not isinstance(arg, (int, float, bool)):
                 raise TypeError("Error: Argument is not a number.")
         for value in kwarg.values():
-            try:
-                float(value)
-            except ValueError:
+            if not isinstance(value, (int, float, bool)):
                 raise TypeError("Error: Argument is not a number.")        
         result=func(*args, **kwarg)
         return result
@@ -19,7 +15,7 @@ def check_numbers(func):
 
 
 @check_numbers
-def sum(a, b):
+def sum(a,b):
     return(a+b)
 
 try:
@@ -37,13 +33,17 @@ except TypeError as e:
 try:
     sum_3=sum("hello", "world" )
     print(f"the result is: {sum_3}")
-except TypeError as e:
+except TypeError as e:  
     print(e)
 
 try:
-    sum_4=sum(1, 2)
+    sum_4=sum(a=5, b=10)
     print(f"the result is: {sum_4}")
 except TypeError as e:
     print(e)
 
-
+try:
+    sum_5=sum(a=50, b="xy")
+    print(f"the result is: {sum_4}")
+except TypeError as e:
+    print(e)
