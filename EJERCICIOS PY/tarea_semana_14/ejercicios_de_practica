@@ -1,0 +1,568 @@
+class Node:
+  data: str
+  next: "Node"
+
+  def __init__(self, data, next=None):
+    self.data = data
+    self.next = next
+
+class LinkedList:
+  head: Node
+
+  def __init__(self, head):
+    self.head = head
+
+  def print_structure(self):
+    current_node = self.head
+    print(current_node.data)
+
+    current_node = current_node.next
+    print(current_node.data)
+
+    current_node = current_node.next
+    print(current_node.data)
+
+
+third_node = Node("Soy el tercer nodo")
+second_node = Node("Soy el segundo nodo", third_node)
+first_node = Node("Soy el primer nodo", second_node)
+
+linked_list = LinkedList(first_node)
+linked_list.print_structure()
+
+
+
+
+print("---------------------------------------------------------------")
+class Node:
+  data: str
+
+  def __init__(self, data, next=None):
+    self.data = data
+    self.next = next
+
+class LinkedList:
+  head: Node
+
+  def __init__(self, head):
+    self.head = head
+
+  def print_structure(self):
+    current_node = self.head
+    while (current_node is not None):
+      print(current_node.data)
+      current_node = current_node.next
+
+class Queue(LinkedList):
+  def enqueue(self, new_node):
+    current_node = self.head
+    next_node = current_node.next
+    # Imprimimos el estado inicial
+    print(f"\n--- INICIO ENQUEUE ---")
+    print(f"Inicio: current_node: {current_node.data}, next_node: {next_node.data if next_node else None}")
+
+    while (next_node is not None):
+      current_node = next_node
+      next_node = current_node.next
+      
+      # Imprimimos el estado después de avanzar
+      print(f"AVANCE: current_node: {current_node.data}, next_node: {next_node.data if next_node else None}")
+      
+    current_node.next = new_node
+    print(f"FIN: Se enlaza el nuevo nodo a: {current_node.data}")
+
+  def dequeue(self):
+    self.head = self.head.next
+
+
+tercer_nodo = Node("Soy el tercer nodo")
+segundo_nodo = Node("Soy el segundo nodo", tercer_nodo)
+primer_nodo = Node("Soy el primer nodo", segundo_nodo)
+
+queue = Queue(primer_nodo)
+
+print("Agregando un elemento")
+
+queue.enqueue(Node("Soy el nuevo nodo!"))
+queue.print_structure()
+
+print("Quitando un elemento")
+
+queue.dequeue()
+queue.print_structure()
+
+print("----------------------------------------------------------")
+
+class Node:
+    data: str
+    next: "Node"
+
+    def __init__(self, data, next=None):
+        self.data = data
+        self.next = next
+
+
+class Queue:
+    head: Node
+
+    def __init__(self, head):
+        self.head = head
+
+    def print_structure(self):
+        current_node = self.head
+
+        while current_node is not None:
+            print(current_node.data)
+            current_node = current_node.next
+
+    def enqueue(self, new_node):
+        current_node = self.head
+
+        while current_node.next is not None:
+            current_node = current_node.next
+
+        current_node.next = new_node
+
+    def dequeue(self):
+        if self.head:
+          self.head = self.head.next
+
+
+first_node = Node("Hola")
+my_queue = Queue(first_node)
+# my_queue.print_structure()
+
+second_node = Node("Mundo")
+my_queue.enqueue(second_node)
+
+third_node = Node("third")
+my_queue.enqueue(third_node)
+
+forth = Node("forth")
+my_queue.enqueue(forth)
+
+my_queue.print_structure()
+
+print("DEQUEUE")
+
+my_queue.dequeue()
+my_queue.print_structure()
+
+print("DEQUEUE")
+
+my_queue.dequeue()
+my_queue.print_structure()
+
+print("DEQUEUE")
+
+my_queue.dequeue()
+my_queue.print_structure()
+
+print("DEQUEUE")
+
+my_queue.dequeue()
+my_queue.print_structure()
+
+
+print("DEQUEUE")
+
+my_queue.dequeue()
+my_queue.print_structure()
+
+print("/////////////////////////////////////////////////")
+print("/////////////////////////////////////////////////")
+print("/////////////////////////////////////////////////")
+print(" Stack (Pila): LIFO")
+"""Método 	  Acción    	Ubicación
+  push	      Agregar   	Tope / Inicio (head)
+  pop       	Quitar	    Tope / Inicio (head)"""
+
+# ----------------------------------------
+# 1. CLASES BASE (Nodo y Lista Enlazada)
+# ----------------------------------------
+class Node:
+    data: str
+
+    def __init__(self, data, next=None):
+        self.data = data
+        self.next = next
+
+class LinkedList:
+    head: Node
+
+    def __init__(self, head):
+        self.head = head
+
+    def print_structure(self):
+        current_node = self.head
+        print("\n--- CONTENIDO DEL STACK (TOPE AL FONDO) ---")
+        while (current_node is not None):
+            print(current_node.data)
+            current_node = current_node.next
+        print("------------------------------------------")
+
+# ----------------------------------------
+# 2. CLASE STACK (PILA) - LIFO
+# ----------------------------------------
+class Stack(LinkedList):
+    
+    # Agregar al tope (se convierte en la nueva HEAD)
+    def push(self, new_node):
+        # 1. El nuevo nodo apunta a la antigua HEAD (conexión vital)
+        new_node.next = self.head 
+        
+        # 2. El nuevo nodo se convierte en la nueva HEAD (el tope)
+        self.head = new_node 
+
+    # Quitar del tope (se elimina la HEAD)
+    def pop(self):
+        if self.head is None:
+            return "El stack está vacío."
+        
+        # 1. Guardamos la referencia del nodo a "quitar" (opcional)
+        popped_node = self.head 
+        
+        # 2. La HEAD salta al siguiente nodo (lo quita de la estructura)
+        self.head = self.head.next
+        
+        return f"Elemento quitado (POP): {popped_node.data}"
+
+# ----------------------------------------
+# 3. PRUEBA DE FUNCIONAMIENTO (LIFO: Último en entrar, Primero en salir)
+# ----------------------------------------
+
+# NOTA: Los nodos se crean de abajo hacia arriba, pero el PUSH es el que define el orden LIFO.
+print("\n--- CREANDO STACK INICIAL ---")
+nodo_a = Node("Disco 1 (Fondo)") # Este sería el primer elemento del Stack (el fondo)
+stack = Stack(nodo_a)
+
+stack.print_structure()
+
+print("--- AGREGANDO ELEMENTOS (PUSH) ---")
+# Elemento 1 (entra después de 'Disco 1')
+stack.push(Node("Disco 2 (Medio)")) 
+stack.print_structure()
+
+# Elemento 2 (entra de último - DEBE SALIR PRIMERO)
+stack.push(Node("Disco 3 (Tope)")) 
+stack.print_structure()
+
+print("--- QUITANDO ELEMENTO (POP) ---")
+# LIFO: El 'Disco 3' (último que entró) debe salir primero.
+print(stack.pop()) 
+stack.print_structure()
+
+print("--- QUITANDO SEGUNDO ELEMENTO (POP) ---")
+# Siguiente a salir es el 'Disco 2'.
+print(stack.pop()) 
+stack.print_structure()
+
+
+print("********************************************")
+
+# ----------------------------------------
+# 1. CLASES BASE (Nodo y Lista Enlazada)
+# ----------------------------------------
+class Node:
+    """Representa un nodo individual en la lista enlazada."""
+    data: str
+
+    def __init__(self, data, next=None):
+        # Si 'next' no se proporciona, por defecto es None (fin de la lista/pila).
+        self.data = data
+        self.next = next
+
+class LinkedList:
+    """La clase base que gestiona la estructura de la lista a través de la 'head'."""
+    head: Node
+
+    def __init__(self, head):
+        self.head = head
+
+    def print_structure(self):
+        """Método para recorrer e imprimir la pila, desde el tope hasta el fondo."""
+        current_node = self.head
+        print("\n--- CONTENIDO DEL STACK (Tope hacia abajo) ---")
+        while (current_node is not None):
+            print(f"| {current_node.data:^26} |") # Imprime centrado para simular la pila
+            current_node = current_node.next
+        print("------------------------------------------")
+
+class Stack(LinkedList):
+    """
+    Implementación de la estructura Stack (Pila) que sigue el principio LIFO.
+    Todas las operaciones ocurren en la 'head'.
+    """
+    
+    # Método PUSH: Agrega un elemento al tope de la pila (Inicio de la Linked List).
+    def push(self, new_node):
+        """
+        Agrega un nodo al inicio de la lista, convirtiéndolo en el nuevo 'head' (tope).
+        """
+        print(f"\n-> PUSH: Agregando '{new_node.data}' al tope.")
+        
+        # 1. CONEXIÓN VITAL:
+        # El nuevo nodo debe apuntar a la antigua cabeza para no perder la lista.
+        # Si no existiera, 'new_node.next' apunta a None (si la pila estaba vacía).
+        new_node.next = self.head 
+        
+        # 2. CAMBIO DE TOPE:
+        # La lista actualiza su referencia 'head' para apuntar al nuevo nodo.
+        # Este nuevo nodo es ahora el primero en salir (LIFO).
+        self.head = new_node 
+
+    # Método POP: Quita el elemento del tope de la pila (Elimina la HEAD).
+    def pop(self):
+        """
+        Quita el nodo que está en el tope de la pila (la 'head').
+        """
+        if self.head is None:
+            return "El Stack está vacío. No se puede hacer POP."
+        
+        # Guardamos la referencia del nodo a "quitar" para devolver su dato
+        popped_node = self.head 
+        
+        # 1. DESCONEXIÓN:
+        # La 'head' salta al siguiente nodo (self.head.next).
+        # El nodo original queda sin referencias y es "quitado" por Python.
+        self.head = self.head.next
+        
+        print(f"\n<- POP: Elemento quitado del tope: {popped_node.data}")
+        return popped_node.data 
+    
+
+    # ----------------------------------------
+# 3. PRUEBA DE FUNCIONAMIENTO (LIFO)
+# ----------------------------------------
+
+# 1. CREACIÓN DEL NODO INICIAL (FONDO DE LA PILA)
+# Nota: Su .next es None por defecto.
+nodo_fondo = Node("TICKET 1 (Fondo)") 
+stack = Stack(nodo_fondo)
+
+print("--- INICIALIZACIÓN ---")
+stack.print_structure()
+
+# 2. AGREGAR ELEMENTOS (PUSH)
+stack.push(Node("TICKET 2 (Medio)")) 
+stack.push(Node("TICKET 3 (Tope)")) # Este debe salir primero (Último en entrar)
+
+# Verificamos el estado de la pila después de agregar
+stack.print_structure()
+
+# 3. QUITAR ELEMENTOS (POP)
+print("\n--- INICIO POP (LIFO) ---")
+
+# Sale el TICKET 3 (el último que se agregó)
+stack.pop() 
+stack.print_structure()
+
+# Sale el TICKET 2
+stack.pop() 
+stack.print_structure()
+
+# Finalmente, sale el TICKET 1 (el primero que se agregó)
+stack.pop()
+stack.print_structure()
+
+# Intentar hacer POP en pila vacía
+stack.pop()
+
+
+
+print("/////////////////////////////////////////////////////////")
+print("/////////////////////////////////////////////////////////")
+print("/////////////////////////////////////////////////////////")
+print("Double Ended Queue (Deque)")
+"""Operación    	Nombre                	  Ubicación	    Lógica	  
+    Inicio	      push_left, pop_left	      Se usa head	    Lógica de Stack (rápida)	
+    Final	        push_right, pop_right	    Se usa tail	    No requiere recorrer la lista	
+"""
+
+# ----------------------------------------
+# 1. CLASES BASE (Nodo y Lista Enlazada con Head y Tail)
+# ----------------------------------------
+
+
+class Node:
+    """Nodo simple con data y puntero al siguiente."""
+    def __init__(self, data, next=None):
+        self.data = data
+        self.next = next
+
+class DequeBase:
+    """
+    Clase base para el Deque. Almacena referencias al inicio (head) 
+    y al final (tail) para hacer operaciones rápidas en ambos extremos.
+    """
+    def __init__(self, head=None, tail=None):
+        self.head = head
+        self.tail = tail # ¡El nuevo puntero crucial!
+
+    def print_structure(self):
+        """Recorre e imprime la estructura."""
+        current_node = self.head
+        print("\n--- CONTENIDO DEL DEQUE (Head a Tail) ---")
+        while (current_node is not None):
+            print(current_node.data)
+            current_node = current_node.next
+        # Siempre mostramos dónde está el tail para verificar
+        print(f"Puntero Tail: {self.tail.data if self.tail else 'VACÍO'}")
+        print("-----------------------------------------")
+
+
+class Deque(DequeBase):
+    """Implementación del Deque con métodos en el lado derecho."""
+    
+    # ----------------------------------------------------
+    # push_right (Agregar al Final) - ¡OPERACIÓN RÁPIDA O(1)!
+    # ----------------------------------------------------
+    def push_right(self, new_node):
+        """
+        Agrega un nodo al final (cola) sin recorrer la lista, 
+        gracias al puntero 'tail'.
+        """
+        print(f"\n-> PUSH_RIGHT: Agregando '{new_node.data}' al final.")
+        
+        if self.head is None:
+            # Caso especial: Si está vacío, head y tail apuntan al nuevo nodo.
+            self.head = new_node
+            self.tail = new_node
+            return
+
+        # 1. ENLACE: El último nodo (self.tail) apunta al nuevo.
+        # Esto modifica la estructura.
+        self.tail.next = new_node
+        
+        # 2. ACTUALIZACIÓN: El nuevo nodo se convierte en el nuevo tail.
+        # Esto mantiene la eficiencia O(1) para el futuro.
+        self.tail = new_node
+
+    # ----------------------------------------------------
+    # pop_right (Quitar del Final) - ¡OPERACIÓN LENTA O(N)!
+    # ----------------------------------------------------
+    def pop_right(self):
+        """
+        Quita el nodo del final. Requiere recorrer la lista 
+        para encontrar el penúltimo nodo.
+        """
+        if self.head is None:
+            return "El Deque está vacío."
+        if self.head == self.tail: # Caso de un solo elemento
+            data = self.head.data
+            self.head = self.tail = None
+            return f"POP_RIGHT: Quitó '{data}'."
+
+        # 1. INICIO DE RECORRIDO (Lento: O(N))
+        current_node = self.head 
+        
+        # 2. ENCONTRAR AL PENÚLTIMO NODO
+        # La condición para parar es: el siguiente nodo es el TAIL.
+        while (current_node.next is not self.tail):
+            print(f"   -> Recorrido: Analizando {current_node.data}...") # Muestra la lentitud
+            current_node = current_node.next
+        
+        # 3. GUARDAR DATA Y ROMPER EL ENLACE
+        popped_data = self.tail.data
+        
+        # El penúltimo nodo (current_node) rompe el enlace
+        current_node.next = None
+        
+        # 4. ACTUALIZAR TAIL: El penúltimo nodo es el nuevo tail.
+        self.tail = current_node
+        
+        return f"<- POP_RIGHT: Quitó '{popped_data}'."
+    
+    # ----------------------------------------
+# 3. PRUEBA DE FUNCIONAMIENTO
+# ----------------------------------------
+
+# Inicialización con tres nodos para empezar a usar head y tail
+deque = Deque()
+deque.push_right(Node("A: Primer elemento"))
+deque.push_right(Node("B: Segundo elemento"))
+deque.push_right(Node("C: Último elemento"))
+
+print("\n\n=============== PUSH RÁPIDO (O(1)) ===============")
+# Agrega un nodo SIN imprimir el recorrido (rápido)
+deque.push_right(Node("D: Nuevo Final Rápido"))
+deque.print_structure()
+
+print("\n\n=============== POP LENTO (O(N)) ===============")
+# Quita un nodo. Muestra el recorrido que lo hace lento.
+print(deque.pop_right())
+deque.print_structure()
+
+print("\n\n=============== POP LENTO (O(N)) - Segunda vez ===============")
+# Vuelve a quitar, y el bucle debe ser más corto.
+print(deque.pop_right())
+deque.print_structure()
+
+print("/////////////////////////////////////////////")
+print("/////////////////////////////////////////////")
+print("/////////////////////////////////////////////")
+print("/////////////////////////////////////////////")
+print("Construcción del Árbol Binario de Búsqueda")
+
+
+class TreeNode:
+    """Nodo con dos punteros: izquierdo y derecho."""
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def insert(root, new_data):
+    """Inserta un nuevo valor en el Árbol Binario de Búsqueda (BST)."""
+    
+    # 1. Caso Base: Si el árbol está vacío, el nuevo nodo es la raíz.
+    if root is None:
+        return TreeNode(new_data)
+
+    # 2. DECISIÓN: Usamos la lógica de comparación para decidir a dónde ir.
+    
+    # Si el nuevo dato es menor, vamos a la izquierda
+    if new_data < root.data:
+        # La recursión es clave: volvemos a llamar a 'insert' en el subárbol izquierdo.
+        # Esto repite el proceso hasta encontrar una posición vacía (None).
+        root.left = insert(root.left, new_data)
+        
+    # Si el nuevo dato es mayor o igual, vamos a la derecha
+    else:
+        # Hacemos lo mismo para el subárbol derecho.
+        root.right = insert(root.right, new_data)
+        
+    return root
+
+
+# ----------------------------------------
+# 3. PRUEBA DE FUNCIONAMIENTO
+# ----------------------------------------
+
+# 1. Inicialización: La raíz (root)
+root = None 
+datos = [50, 30, 70, 20, 40, 60, 80]
+
+print("--- CONSTRUYENDO EL ÁRBOL ---")
+
+for dato in datos:
+    root = insert(root, dato)
+    print(f"Insertando: {dato}")
+
+# ----------------------------------------
+# 4. Verificación Manual (Imprimimos los punteros de la raíz y sus hijos directos)
+# ----------------------------------------
+
+print("\n--- VERIFICACIÓN DE LA ESTRUCTURA ---")
+
+# Raíz
+print(f"Raíz (Root): {root.data}") # Debería ser 50
+
+# Nivel 1: Hijos de 50
+print(f"  Hijo Izquierdo (menor a 50): {root.left.data}") # Debería ser 30
+print(f"  Hijo Derecho (mayor a 50): {root.right.data}") # Debería ser 70
+
+# Nivel 2: Hijos de 30
+print(f"    Hijo Izq. de 30 (menor a 30): {root.left.left.data}") # Debería ser 20
+print(f"    Hijo Der. de 30 (mayor a 30): {root.left.right.data}") # Debería ser 40
+
