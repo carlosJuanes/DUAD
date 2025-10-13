@@ -105,7 +105,7 @@ def linear_search(my_list, target):
 
 def binary_search(my_list, target):
     low = 0                                                                                 #O(1)
-    high = len(lst) - 1                                                                     #O(1)
+    high = len(my_list) - 1                                                                     #O(1)
     while low <= high:                                                                      #O(log N)
         mid = (low + high) // 2                                                             #O(1)
         if my_list[mid] == target:                                                          #O(1)
