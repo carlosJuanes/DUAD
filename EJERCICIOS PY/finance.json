@@ -11,6 +11,9 @@
         },
         {
             "name": "BUY"
+        },
+        {
+            "name": "salario"
         }
     ],
     "transactions": [
@@ -49,6 +52,12 @@
             "title": "CAR",
             "amount": 530.0,
             "type": "expense"
+        },
+        {
+            "category_name": "salario",
+            "title": "pago",
+            "amount": 2000.0,
+            "type": "income"
         }
     ]
 }
