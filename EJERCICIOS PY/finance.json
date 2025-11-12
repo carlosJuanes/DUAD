@@ -1,0 +1,63 @@
+{
+    "categories": [
+        {
+            "name": "food"
+        },
+        {
+            "name": "transport"
+        },
+        {
+            "name": "gas"
+        },
+        {
+            "name": "BUY"
+        },
+        {
+            "name": "salario"
+        }
+    ],
+    "transactions": [
+        {
+            "category_name": "food",
+            "title": "income",
+            "amount": 100.0,
+            "type": "income"
+        },
+        {
+            "category_name": "transport",
+            "title": "expense",
+            "amount": 50.0,
+            "type": "income"
+        },
+        {
+            "category_name": "transport",
+            "title": "bus",
+            "amount": 50.0,
+            "type": "expense"
+        },
+        {
+            "category_name": "gas",
+            "title": "gas",
+            "amount": 70.0,
+            "type": "expense"
+        },
+        {
+            "category_name": "transport",
+            "title": "reembolso",
+            "amount": 500.0,
+            "type": "income"
+        },
+        {
+            "category_name": "BUY",
+            "title": "CAR",
+            "amount": 530.0,
+            "type": "expense"
+        },
+        {
+            "category_name": "salario",
+            "title": "pago",
+            "amount": 2000.0,
+            "type": "income"
+        }
+    ]
+}
