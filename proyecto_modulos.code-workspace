@@ -1,0 +1,18 @@
+{
+    // Este archivo define un "Espacio de Trabajo" en VS Code.
+    // Permite abrir varias carpetas que no están directamente relacionadas
+    // en una sola ventana para una mejor gestión del proyecto.
+    "folders": [
+        {
+            "path": "MODULE_1"
+        },
+        {
+            "path": "MODULE_2"
+        },
+        // Puedes añadir más carpetas de la raíz aquí si lo necesitas
+        // como "PSEUDOCODIGOS" o "PYTHON"
+    ],
+    "settings": {
+        // Aquí puedes poner configuraciones específicas para este Espacio de Trabajo.
+    }
+}
