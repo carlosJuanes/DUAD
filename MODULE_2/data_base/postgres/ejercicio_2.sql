@@ -3,17 +3,18 @@ SET search_path TO ejercicio_1_postgres;
 DO $$
 DECLARE
 	-- DECLARANDO VARIABLES TEMPORALES
-	V_user_name VARCHAR;
 	v_available_stock INTEGER;
 	v_current_product RECORD ;
 	V_price numeric :=0;
 	v_total numeric :=0;
+	v_bill_id INTEGER; --MODIFICACION= se creo una variable temporal para consegir de manera automatica
+						--el valor del id de la factura a ingresr.
 
 BEGIN
 	-- SE CREO UN CARRO DE COMPRAS PREVIO A LA FACTURACION
 	--PARA TENER UNA TABLA EN LA QUE ITERAR UNA LISTA DE PRODUCTOS.
-	CREATE TABLE shopping_cart(
-	ID serial primary key,
+	CREATE TABLE IF NOT EXISTS shopping_cart( --MODIFICACION= Se agrego IF NOT EXISTS para evitar
+	ID serial primary key,					  -- 			   errores en una segunda ejecucion.
 	USER_ID integer references users(id),
 	PRODUCT_ID integer references products(id),
 	QUANTITY integer not null
@@ -34,7 +35,15 @@ BEGIN
 	IF V_user_name is null THEN
 		RAISE EXCEPTION 'THE USER IS NOT FOUND';
 	END IF;
+	-- MODIFICACION= se cambio la ubicacion del insert de bill al inicio
+	-- 				  para conseguir el id para la variable temporal
 
+	INSERT INTO BILLS(DATE, USER_ID, TOTAL)
+	VALUES
+	(now(), (SELECT user_id from shopping_cart LIMIT 1), 0)
+	RETURNING ID INTO v_bill_id;
+
+	
 	FOR v_current_product IN
 		SELECT *
 		FROM shopping_cart
@@ -59,11 +68,18 @@ BEGIN
 		FROM PRODUCTS
 		WHERE ID = v_current_product.product_id;
 		v_total=v_total + v_price * v_current_product.quantity;
+
+	-- MODIFICACION= en cada iteracion del bucle, se ira insertando en la tabla
+	--				bills_detail de acuerdo a lo sugerido.
+		INSERT INTO bills_detail(quantity_purchased, total_amount, product_id, bill_id)
+		VALUES
+		(v_current_product.quantity, v_price * v_current_product.quantity, v_current_product.product_id, v_bill_id);
+		
 	END LOOP;
 	
-	--SE INGRESO LA FACTURA A LA TABLA DE BILLS
-	INSERT INTO BILLS(DATE, USER_ID, TOTAL)
-	VALUES
-	(now(), v_current_product.user_id, v_total );
+	--MODIFICACION= se actualizo el valor total de la factura en curso de la tabla bills.
+	UPDATE bills
+	SET total=v_total
+	WHERE id= v_bill_id;
 
 END $$;
