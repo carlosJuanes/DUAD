@@ -11,12 +11,16 @@ SET search_path TO ejercicio_1_postgres;
 DO $$
 DECLARE
 	--CREACION DE VARIABLES TEMPORALES PARA EL EJERCICIO.
-	v_bill_id INTEGER :=4;-- MODIFICACION= se le dio el valor del id a eliminar
-	v_current_bill RECORD;				  -- de manera manual para mayor dinamismo
-	v_bill_status VARCHAR(20);			  -- evitando crear un bloque de codigo estatico.
+	v_bill_id INTEGER;
+	v_current_bill RECORD;
+	v_bill_status VARCHAR(20);
 
 BEGIN
-		
+	SELECT id INTO v_bill_id --MODIFICACION 2= Volvi a escribir el bloque de codigo para 
+	FROM bills			  -- obtener el id, lo cual habia borrado antes pensando que no
+	WHERE id =4;		  -- se estaba usando, fue mi error al olvidar que era requerimiento validarlo.
+
+	
 	IF v_bill_id IS NULL THEN
 		RAISE EXCEPTION 'THE BILL IS NOT FOUND';
 	END IF;
