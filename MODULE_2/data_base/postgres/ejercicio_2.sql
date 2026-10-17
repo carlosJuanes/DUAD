@@ -3,6 +3,7 @@ SET search_path TO ejercicio_1_postgres;
 DO $$
 DECLARE
 	-- DECLARANDO VARIABLES TEMPORALES
+	V_user_name VARCHAR(50); --MODIFICACION 2= por error elimine esta ariable temporal.
 	v_available_stock INTEGER;
 	v_current_product RECORD ;
 	V_price numeric :=0;
@@ -82,4 +83,5 @@ BEGIN
 	SET total=v_total
 	WHERE id= v_bill_id;
 
+	DELETE FROM shopping_cart;
 END $$;
