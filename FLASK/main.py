@@ -45,6 +45,7 @@ def make_task():
 @app.route("/task/<int:id>", methods=['PATCH'])#se modifico la ruta para que admitiera el id a modificar
 def update_task(id):
     request_body=request.json
+    request_body.pop('id', None)
     with open ('task.json', 'r') as f:
         tasks=json.load(f)
         try:
@@ -74,7 +75,6 @@ def update_task(id):
 #4-eliminar tareas
 @app.route("/task/<int:id>", methods=['DELETE'])#se modifico para que la ruta nos traiga el id a eliminar
 def delete_task(id):
-    request_body=request.json
     with open('task.json', 'r') as f:
         tasks=json.load(f)
         try:
