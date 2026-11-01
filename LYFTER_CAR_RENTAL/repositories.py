@@ -103,7 +103,20 @@ class CarRepository:
             "car_status":car_record[5],
         }
 
-    
+    def is_car_available(self, _id):
+        try:
+            status=self.db_manager.execute_query(
+                "SELECT car_status FROM lyfter_car_rental.cars WHERE id=%s",
+                (_id,)
+            )
+            if status[0][0]=="available":
+                return True
+            print("the car is not available") 
+            return False
+        except Exception as e:
+            print(f"Error validating car: {e}")
+            return False
+        
     def validated_existence(self, _id):
         try:
             result=self.db_manager.execute_query(
@@ -111,7 +124,7 @@ class CarRepository:
                 (_id,)
             )
             if result:
-                print("the car already exists")
+                print("car found!!!")
                 return True
             return False
         except Exception as e:
@@ -123,7 +136,7 @@ class CarRepository:
         try:
             result=self.db_manager.execute_query(
                 "SELECT vin_number FROM lyfter_car_rental.cars WHERE vin_number=%s",
-                (vin_number)
+                (vin_number,)
             )
             if result:
                 print("the vin number already exist")
@@ -163,7 +176,7 @@ class CarRepository:
 
     def disabled_car(self, car_id):
         try:
-            db_manager.execute_query(
+            self.db_manager.execute_query(
                 "UPDATE lyfter_car_rental.cars SET car_status=%s WHERE id=%s",
                 ('disabled', car_id) 
             )
@@ -176,9 +189,9 @@ class CarRepository:
 
     def get_by_status_(self, status):
         try:
-            results =db_manager.execute_query(
+            results =self.db_manager.execute_query(
                 "SELECT *  FROM lyfter_car_rental.cars WHERE car_status=%s",
-                (status)
+                (status,)
             )
             formatted_result=[self._format_car(result) for result in results]
             return formatted_result
@@ -231,7 +244,7 @@ class RentalRepository:
 
     def update_status(self, _id, new_status):
         try:
-            db_manager.execute_query(
+            self.db_manager.execute_query(
                 "UPDATE lyfter_car_rental.rentals SET rental_status=%s WHERE id=%s",
                 (new_status, _id)
             )
@@ -244,7 +257,7 @@ class RentalRepository:
 
     def completed_rental(self, rental_id, car_id):
         try:
-            db_manager.execute_query(
+            self.db_manager.execute_query(
                 "UPDATE lyfter_car_rental.rentals SET rental_status =%s WHERE id =%s",
                 ('available', rental_id)
             )
@@ -272,7 +285,7 @@ class BaseRepository:
             for column, value in filter.items():
                 conditions.append(f" {column} =%s")
                 values.append(value)
-                query+= " WHERE " + " AND ".join(conditions)
+            query+= " WHERE " + " AND ".join(conditions)
         try:
             return self.db_manager.execute_query(query, tuple(values))
         except Exception as e:
