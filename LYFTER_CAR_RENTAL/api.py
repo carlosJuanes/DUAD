@@ -41,7 +41,7 @@ def add_car():
             if not value:
                 abort(400, "complete all required fields")
         if car_repo.valid_car(request_body['vin_number']):
-            abort("the car already exist")
+            abort(400, "the car already exist")
         if not car_repo.created_car(**request_body):
             abort(500, "Error creating the new car")
         return jsonify(message="car added successfully"),201
@@ -164,10 +164,11 @@ def update_rental_status(id):
 
     try:
         if 'rental_status' in request_body:
-            if request_body.get('rental_status') not in ('available', 'rented', 'cancelled'):
+            if request_body.get('rental_status') not in ('available', 'rented', 'canceled'):
                 raise ValueError ("The status is invalid; select from: available, rented, canceled.")
         new_status=request_body.get('rental_status')
-        rental_repo.get_rental_by_id(id)
+        if not rental_repo.get_rental_by_id(id):
+            abort(404, "No results were found in the database.")
         if not rental_repo.update_status(id, new_status):
             abort(500, "Error updating rental status")
         return jsonify(message="rental status updated successfully"), 200

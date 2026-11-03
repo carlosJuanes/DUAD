@@ -262,7 +262,7 @@ class RentalRepository:
                 ('available', rental_id)
             )
             print("Rental status successfully changed")
-            db_manager.execute_query(
+            self.db_manager.execute_query(
                 "UPDATE lyfter_car_rental.cars SET car_status=%s WHERE id=%s",
                 ('available', car_id)
             )
