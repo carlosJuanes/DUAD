@@ -175,6 +175,8 @@ def update_rental_status(id):
     
     except ValueError as e:
         return jsonify(message=str(e)),400
+    except HTTPException as e:
+        return e 
     except Exception as e:
         return jsonify(message=str(e)), 500
 
