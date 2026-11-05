@@ -68,7 +68,7 @@ class UserRepository:
                 "INSERT INTO lyfter_car_rental.users (full_name, email, user_name, password, birthdate, account_status) VALUES (%s, %s, %s, %s, %s, %s)",
                 (full_name, email, user_name, password, birthdate, account_status),
             )
-            print("user inserted successfully")
+            #print("user inserted successfully")
             return True
         except Exception as e:
             print(f"error inserting a user in to database: {e}")
@@ -154,7 +154,7 @@ class CarRepository:
                 "INSERT INTO lyfter_car_rental.cars (vin_number, make, model, year, car_status) VALUES (%s, %s, %s, %s, %s)",
                 (vin_number, make, model, year, car_status)
             )
-            print ("car insert successfully")
+            #print ("car insert successfully")
             return True
         except Exception as e:
             print(f"Error inserting a car into data base: {e}")
@@ -235,7 +235,7 @@ class RentalRepository:
                 "INSERT INTO lyfter_car_rental.rentals (user_id, car_id, rental_status) VALUES (%s, %s, %s)",
                 (user_id, car_id, 'rented')
             )
-            print("Car successfully rented")
+            #print("Car successfully rented")
             return True
         except Exception as e:
             print(f"error while trying to rent the car: {e}")
