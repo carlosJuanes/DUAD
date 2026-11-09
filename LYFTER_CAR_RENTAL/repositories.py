@@ -229,11 +229,11 @@ class RentalRepository:
             return False
 
 
-    def rental_car(self, user_id, car_id):
+    def rental_car(self, user_id, car_id, rental_date, rental_status):
         try:
             self.db_manager.execute_query(
-                "INSERT INTO lyfter_car_rental.rentals (user_id, car_id, rental_status) VALUES (%s, %s, %s)",
-                (user_id, car_id, 'rented')
+                "INSERT INTO lyfter_car_rental.rentals (user_id, car_id, rental_date, rental_status) VALUES (%s, %s, %s, %s)",
+                (user_id, car_id, rental_date, rental_status)
             )
             #print("Car successfully rented")
             return True
