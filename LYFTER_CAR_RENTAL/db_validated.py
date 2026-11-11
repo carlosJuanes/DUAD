@@ -8,13 +8,15 @@ def validated_query():
         table_required=['users','cars', 'rentals']
         for table in table_required:
             if not table in table_list:
-                return(f"the table: {table} was not found.")
+                print(f"the table: {table} was not found.")
         availability_query=db_manager.execute_query(" SELECT COUNT(*) FROM lyfter_car_rental.cars WHERE car_status='available';",())
         available_cars=[cars[0] for cars in availability_query]
         if available_cars[0]>=1:
             print("DB OK. operating system functioning normally")
+        else:
+            print("DB ERROR. No cars available.")
     except Exception as e:
-        print(f"DB ERROR. No cars available. {e}")
+        print(f"DB ERROR. unexpected database error. {e}")
 
 
 if __name__ == '__main__':
