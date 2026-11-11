@@ -10,7 +10,7 @@ class PgManager:
 
         self.connection=self.created_connection()
         if self.connection:
-            print("1- connected to database")
+            #print("1- connected to database")
             self.cursor=self.connection.cursor()
 
     def created_connection(self):
