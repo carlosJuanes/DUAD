@@ -1,7 +1,7 @@
 from sqlalchemy import Table, Column, Integer, String
 from db import metadata_obj
 
-created_user_table=Table(
+create_user_table=Table(
     'users',
     metadata_obj,
     Column('id', Integer, primary_key=True),

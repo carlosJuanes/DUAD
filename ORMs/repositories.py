@@ -1,7 +1,7 @@
 from sqlalchemy import insert, select, and_, or_, update, bindparam, delete
-from addresses_table import created_addresses_table
-from cars_table import created_cars_table
-from users_table import created_user_table
+from addresses_table import create_addresses_table
+from cars_table import create_cars_table
+from users_table import create_user_table
 from db import engine, metadata_obj
 
 
@@ -9,22 +9,24 @@ class UserRepository():
     def __init__(self, engine):
         self.engine=engine
 
-    def created_user(self, full_name, email):
+    def create_user(self, full_name, email):
         try:
-            stmt=insert(created_user_table).values(full_name=full_name, email=email)
+            stmt=insert(create_user_table).values(full_name=full_name, email=email)
             with self.engine.connect() as conn:
                 conn.execute(stmt)
                 conn.commit()
+                return True
         except Exception as e:
             print(f"Error creating user:{e}")
+            return False
 
     def update_user(self, id, **kwargs):
         try:
             int_id=int(id)
-            result=select(created_user_table).where(created_user_table.c.id==int_id)
+            result=select(create_user_table).where(create_user_table.c.id==int_id)
             stmt=(
-                update(created_user_table)
-                .where(created_user_table.c.id==int_id)
+                update(create_user_table)
+                .where(create_user_table.c.id==int_id)
                 .values(kwargs)
                 )
             with self.engine.connect() as conn:
@@ -34,27 +36,48 @@ class UserRepository():
                     return False
                 conn.execute(stmt)
                 conn.commit()
+                return True
         except Exception as e:
             print(f"Error updating the user: {e}")
+            return False
 
     def delete_user(self, id):
         try:
             int_id=int(id)
-            result=select(created_user_table).where(created_user_table.c.id==int_id)
-            stmt=delete(created_user_table).where(created_user_table.c.id==int_id)
+            result=select(create_user_table).where(create_user_table.c.id==int_id)
+            update_cars=(
+                update(create_cars_table)
+                .where(create_cars_table.c.user_id==int_id)
+                .values(create_cars_table.c.user_id==None)
+            )
+            update_address=(
+                update(create_addresses_table)
+                .where(create_addresses_table.c.user_id==int_id)
+                .values(create_addresses_table.c.user_id==None)
+            )
+            stmt= delete(create_user_table).where(create_user_table.c.id==int_id)
+            print(0)
             with self.engine.connect() as conn:
                 select_result=conn.execute(result)
                 if not select_result.first():
                     print("User not found")
                     return False
+                print("1")
+                conn.execute(update_cars)
+                print("2")
+                conn.execute(update_address)
+                print("3")
+                print(stmt.compile(engine))
                 conn.execute(stmt)
                 conn.commit()
+                return True
         except Exception as e:
             print(f"Error Deleting the user: {e}")
+            return False
 
     def get_all_users(self):
         try:
-            stmt=select(created_user_table)
+            stmt=select(create_user_table)
             with self.engine.connect() as conn:
                 result=conn.execute(stmt)
                 return result.mappings().all()
@@ -66,25 +89,30 @@ class CarRepository():
     def __init__(self, engine):
         self.engine=engine
 
-    def created_car(self, vin_number, make, model, year, user_id):
+    def create_car(self, vin_number, make, model, year, user_id):
         try:
             int_year=int(year)
-            int_user_id=int(user_id)
-            stmt=insert(created_cars_table).values(vin_number=vin_number, make=make, model=model, year=int_year, user_id=int_user_id)
+            if not user_id:
+                user_id=None
+            else:
+                user_id=int(user_id)
+            stmt=insert(create_cars_table).values(vin_number=vin_number, make=make, model=model, year=int_year, user_id=user_id)
             with self.engine.connect() as conn:
                 conn.execute(stmt)
                 conn.commit()
+                return True
         except Exception as e:
             print(f"Error creating the car: {e}")
+            return False
 
     def associate_car_with_user(self, car_id, user_id):
         try:
             int_user_id=int(user_id)
             int_car_id=int(car_id)
-            result=select(created_user_table).where(created_user_table.c.id==int_user_id)
+            result=select(create_user_table).where(create_user_table.c.id==int_user_id)
             stmt=(
-                update(created_cars_table)
-                .where(created_cars_table.c.id==int_car_id)
+                update(create_cars_table)
+                .where(create_cars_table.c.id==int_car_id)
                 .values(user_id=int_user_id)
             )
             with self.engine.connect() as conn:
@@ -94,16 +122,18 @@ class CarRepository():
                     return False
                 conn.execute(stmt)
                 conn.commit()
+                return True
         except Exception as e:
             print(f"Error updating the user id in the cars table: {e}")
+            return False
 
     def update_cars(self, id, **kwargs):
         try:
             int_id=int(id)
-            result=select(created_cars_table).where(created_cars_table.c.id==int_id)
+            result=select(create_cars_table).where(create_cars_table.c.id==int_id)
             stmt=(
-                update(created_cars_table)
-                .where(created_cars_table.c.id==int_id)
+                update(create_cars_table)
+                .where(create_cars_table.c.id==int_id)
                 .values(kwargs)
             )
             with self.engine.connect() as conn:
@@ -113,14 +143,16 @@ class CarRepository():
                     return False
                 conn.execute(stmt)
                 conn.commit()
+                return True
         except Exception as e:
             print(f"Error updating the car: {e}")
+            return False
 
     def delete_car(self, id):
         try:
             int_id=int(id)
-            result=select(created_cars_table).where(created_cars_table.c.id==int_id)
-            stmt=delete(created_cars_table).where(created_cars_table.c.id==int_id)
+            result=select(create_cars_table).where(create_cars_table.c.id==int_id)
+            stmt=delete(create_cars_table).where(create_cars_table.c.id==int_id)
             with self.engine.connect() as conn:
                 select_result=conn.execute(result)
                 if not select_result.first():
@@ -128,12 +160,14 @@ class CarRepository():
                     return False
                 conn.execute(stmt)
                 conn.commit()
+                return True
         except Exception as e:
             print(f"Error deleting the car: {e}")
+            return False
 
     def get_all_cars(self):
         try:
-            stmt=select(created_cars_table)
+            stmt=select(create_cars_table)
             with self.engine.connect() as conn:
                 result=conn.execute(stmt)
                 return result.mappings().all()
@@ -145,22 +179,24 @@ class AddressRepository():
     def __init__(self, engine):
         self.engine=engine
 
-    def created_address(self, address, user_id):
+    def create_address(self, address, user_id):
         try:
-            stmt=insert(created_addresses_table).values(address=address, user_id=user_id)
+            stmt=insert(create_addresses_table).values(address=address, user_id=user_id)
             with self.engine.connect() as conn:
                 conn.execute(stmt)
                 conn.commit()
+                return True
         except Exception as e:
             print(f"Error creating address table:{e}")
+            return False
 
     def update_address(self, id, **kwargs):
         try:
             int_id=int(id)
-            result=select(created_addresses_table).where(created_addresses_table.c.id==int_id)
+            result=select(create_addresses_table).where(create_addresses_table.c.id==int_id)
             stmt=(
-                update(created_addresses_table)
-                .where(created_addresses_table.c.id==int_id)
+                update(create_addresses_table)
+                .where(create_addresses_table.c.id==int_id)
                 .values(kwargs)
                 )
             with self.engine.connect() as conn:
@@ -170,14 +206,16 @@ class AddressRepository():
                     return False
                 conn.execute(stmt)
                 conn.commit()
+                return True
         except Exception as e:
             print(f"Error updating the address: {e}")
+            return False
 
     def delete_address(self, id):
         try:
             int_id=int(id)
-            result=select(created_addresses_table).where(created_addresses_table.c.id==int_id)
-            stmt=delete(created_addresses_table).where(created_addresses_table.c.id==int_id)
+            result=select(create_addresses_table).where(create_addresses_table.c.id==int_id)
+            stmt=delete(create_addresses_table).where(create_addresses_table.c.id==int_id)
             with self.engine.connect() as conn:
                 select_result=conn.execute(result)
                 if not select_result.first():
@@ -185,12 +223,14 @@ class AddressRepository():
                     return False
                 conn.execute(stmt)
                 conn.commit()
+                return True
         except Exception as e:
             print(f"Error deleting the address:{e}")
+            return False
 
     def get_all_address(self):
         try:
-            stmt=select(created_addresses_table)
+            stmt=select(create_addresses_table)
             with self.engine.connect() as conn:
                 result=conn.execute(stmt)
                 return result.mappings().all()

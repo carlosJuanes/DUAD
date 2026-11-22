@@ -1,7 +1,7 @@
 from sqlalchemy import Table, Column, Integer, String, ForeignKey
 from db import metadata_obj
 
-created_cars_table=Table(
+create_cars_table=Table(
     'cars',
     metadata_obj,
     Column('id', Integer, primary_key=True),
