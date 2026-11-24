@@ -65,13 +65,13 @@ def main():
         address_rp=AddressRepository(engine)
 
         for user in users:
-            users_rp.created_user(**user)
+            users_rp.create_user(**user)
 
         for car in cars:
-            cars_rp.created_car(**car)
+            cars_rp.create_car(**car)
 
         for address in addresses:
-            address_rp.created_address(**address)
+            address_rp.create_address(**address)
         
         users_rp.update_user(1, email="pedro_pablo@gmail.com")
 

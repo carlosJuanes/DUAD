@@ -48,25 +48,21 @@ class UserRepository():
             update_cars=(
                 update(create_cars_table)
                 .where(create_cars_table.c.user_id==int_id)
-                .values(create_cars_table.c.user_id==None)
+                .values(user_id=None)
             )
             update_address=(
                 update(create_addresses_table)
                 .where(create_addresses_table.c.user_id==int_id)
-                .values(create_addresses_table.c.user_id==None)
+                .values(user_id=None)
             )
             stmt= delete(create_user_table).where(create_user_table.c.id==int_id)
-            print(0)
             with self.engine.connect() as conn:
                 select_result=conn.execute(result)
                 if not select_result.first():
                     print("User not found")
                     return False
-                print("1")
                 conn.execute(update_cars)
-                print("2")
                 conn.execute(update_address)
-                print("3")
                 print(stmt.compile(engine))
                 conn.execute(stmt)
                 conn.commit()
@@ -109,16 +105,21 @@ class CarRepository():
         try:
             int_user_id=int(user_id)
             int_car_id=int(car_id)
-            result=select(create_user_table).where(create_user_table.c.id==int_user_id)
+            result_user=select(create_user_table).where(create_user_table.c.id==int_user_id)
+            result_car=select(create_cars_table).where(create_cars_table.c.id==int_car_id)
             stmt=(
                 update(create_cars_table)
                 .where(create_cars_table.c.id==int_car_id)
                 .values(user_id=int_user_id)
             )
             with self.engine.connect() as conn:
-                select_result=conn.execute(result)
-                if not select_result.first():
+                select_user=conn.execute(result_user)
+                if not select_user.first():
                     print("User was not found")
+                    return False
+                select_car=conn.execute(result_car)
+                if not select_car.first():
+                    print("car was not found")
                     return False
                 conn.execute(stmt)
                 conn.commit()
