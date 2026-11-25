@@ -50,11 +50,6 @@ class UserRepository():
                 .where(create_cars_table.c.user_id==int_id)
                 .values(user_id=None)
             )
-            update_address=(
-                update(create_addresses_table)
-                .where(create_addresses_table.c.user_id==int_id)
-                .values(user_id=None)
-            )
             stmt= delete(create_user_table).where(create_user_table.c.id==int_id)
             with self.engine.connect() as conn:
                 select_result=conn.execute(result)
@@ -62,8 +57,6 @@ class UserRepository():
                     print("User not found")
                     return False
                 conn.execute(update_cars)
-                conn.execute(update_address)
-                print(stmt.compile(engine))
                 conn.execute(stmt)
                 conn.commit()
                 return True

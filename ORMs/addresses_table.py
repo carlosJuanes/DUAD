@@ -6,5 +6,5 @@ create_addresses_table= Table(
     metadata_obj,
     Column('id', Integer, primary_key=True),
     Column('address', String(200), nullable=False),
-    Column('user_id', ForeignKey('users.id'), nullable=True),
+    Column('user_id', ForeignKey('users.id', ondelete=('CASCADE'))),
 )
